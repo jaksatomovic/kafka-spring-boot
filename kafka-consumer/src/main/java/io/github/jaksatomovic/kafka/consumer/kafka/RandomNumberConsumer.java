@@ -16,7 +16,7 @@ public class RandomNumberConsumer
 {
 
     @Value ("${message.processing.time}")
-    private long processingTime;
+    private Long processingTime;
 
 //    @KafkaListener (topics = "random-number")
 //    public void consume(String message) throws UnknownHostException
@@ -26,7 +26,7 @@ public class RandomNumberConsumer
 //    }
 
     @KafkaListener(topics = "random-number")
-    public void consumer(String message) throws UnknownHostException, InterruptedException {
+    public void consume(String message) throws UnknownHostException, InterruptedException {
         String hostName = InetAddress.getLocalHost().getHostName();
         System.out.println(String.format("%s consumed %s", hostName, message));
         Thread.sleep(processingTime);
