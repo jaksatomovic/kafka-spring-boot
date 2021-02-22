@@ -2,25 +2,25 @@ version: '3'
 
 services:
   producer:
-    image: kafka-producer
+    image: kafka-demo/kafka-producer
     environment:
       - BROKER=kafka1:19091
   consumer:
-    image: kafka-consumer
+    image: kafka-demo/kafka-consumer
     environment:
       - BROKER=kafka2:19092
-      - MESSAGE_PROCESSING_TIME=0
+      - MESSAGE_PROCESSING_TIME=2000
 
 
 # version: '3'
 
 # services:
 #   producer:
-#     image: kafka-producer
+#     image: demo/kafka-producer
 #     environment:
-#       - BROKER=kafka1:19091
+#       - BROKER=kafka1:9091
 #   consumer:
-#     image: kafka-consumer
+#     image: demo/kafka-consumer
 #     environment:
-#       - BROKER=kafka2:19092
+#       - BROKER=kafka2:9092
 #       - MESSAGE_PROCESSING_TIME=2000
