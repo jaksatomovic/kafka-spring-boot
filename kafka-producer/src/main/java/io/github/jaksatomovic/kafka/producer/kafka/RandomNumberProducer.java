@@ -17,6 +17,7 @@ public class RandomNumberProducer
 {
     private static final int MIN = 10;
     private static final int MAX = 100_000;
+    private int counter = 1;
 
     private final KafkaTemplate<String, String> kafkaTemplate;
 
@@ -25,10 +26,20 @@ public class RandomNumberProducer
         this.kafkaTemplate = kafkaTemplate;
     }
 
+//    @Scheduled (fixedRate = 1000)
+//    public void produce() throws UnknownHostException
+//    {
+//        int random = ThreadLocalRandom.current().nextInt(MIN, MAX);
+//        this.kafkaTemplate.sendDefault(String.valueOf(random));
+//        //just for logging
+//        String hostName = InetAddress.getLocalHost().getHostName();
+//        System.out.println(String.format("%s produced %d", hostName, random));
+//    }
+
     @Scheduled (fixedRate = 1000)
     public void produce() throws UnknownHostException
     {
-        int random = ThreadLocalRandom.current().nextInt(MIN, MAX);
+        int random = counter++;
         this.kafkaTemplate.sendDefault(String.valueOf(random));
         //just for logging
         String hostName = InetAddress.getLocalHost().getHostName();

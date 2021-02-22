@@ -9,3 +9,7 @@ spring:
       auto-offset-reset: earliest
       key-serializer: org.apache.kafka.common.serialization.StringDeserializer
       value-serializer: org.apache.kafka.common.serialization.StringDeserializer
+
+message:
+  processing:
+    time: 0

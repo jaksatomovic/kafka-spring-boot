@@ -1,5 +1,6 @@
 package io.github.jaksatomovic.kafka.consumer.kafka;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
@@ -13,10 +14,21 @@ import java.net.UnknownHostException;
 @Service
 public class RandomNumberConsumer
 {
-    @KafkaListener (topics = "random-number")
-    public void consume(String message) throws UnknownHostException
-    {
+
+    @Value ("${message.processing.time}")
+    private long processingTime;
+
+//    @KafkaListener (topics = "random-number")
+//    public void consume(String message) throws UnknownHostException
+//    {
+//        String hostName = InetAddress.getLocalHost().getHostName();
+//        System.out.println(String.format("%s consumed %s", hostName, message));
+//    }
+
+    @KafkaListener(topics = "random-number")
+    public void consumer(String message) throws UnknownHostException, InterruptedException {
         String hostName = InetAddress.getLocalHost().getHostName();
         System.out.println(String.format("%s consumed %s", hostName, message));
+        Thread.sleep(processingTime);
     }
 }
